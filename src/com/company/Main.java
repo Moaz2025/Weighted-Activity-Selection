@@ -21,33 +21,31 @@ public class Main {
                 int weight = Integer.parseInt(activityData[2]);
                 activities[i] = new Activity(startTime, finishTime, weight);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Path filePath = Paths.get(inputFile);
-        String fileName = filePath.getFileName().toString();
-        int lastDotIndex = fileName.lastIndexOf('.');
-        String newFile = fileName.substring(0, lastDotIndex);
-        String newFileName = newFile + "_20011969.txt";
-        Path newFilePath = filePath.getParent().resolve(newFileName);
+        Path inputFilePath = Paths.get(inputFile);
+        String inputFileName = inputFilePath.getFileName().toString();
+        int lastDotIndex = inputFileName.lastIndexOf('.');
+        String outputFileName = inputFileName.substring(0, lastDotIndex) + "_20011969.txt";
+        Path outputFilePath = inputFilePath.getParent().resolve(outputFileName);
 
         try {
-            Files.copy(filePath, newFilePath, StandardCopyOption.REPLACE_EXISTING);
-            System.out.println("Output file created successfully at: " + newFilePath);
+            Files.copy(inputFilePath, outputFilePath, StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("Output file created successfully at: " + outputFilePath);
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("Failed to create the new file.");
         }
-        String outputFile = newFilePath.toString();
+
+        String outputFile = outputFilePath.toString();
         WeightedActivitySelection weightedActivitySelection = new WeightedActivitySelection();
         String output = "The optimal profit is "
                 + weightedActivitySelection.activitySelection(activities);
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(outputFile))) {
-            bw.write(output);
-
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(outputFile))) {
+            bufferedWriter.write(output);
         } catch (IOException e) {
             e.printStackTrace();
         }
