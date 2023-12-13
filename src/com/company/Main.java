@@ -11,11 +11,11 @@ public class Main {
     public static void main(String[] args) {
         String inputFile = args[0];
         Activity[] activities = new Activity[0];
-        try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
-            int n = Integer.parseInt(br.readLine().trim());
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(inputFile))) {
+            int n = Integer.parseInt(bufferedReader.readLine().trim());
             activities = new Activity[n];
             for (int i = 0; i < n; i++) {
-                String[] activityData = br.readLine().split(" ");
+                String[] activityData = bufferedReader.readLine().split(" ");
                 int startTime = Integer.parseInt(activityData[0]);
                 int finishTime = Integer.parseInt(activityData[1]);
                 int weight = Integer.parseInt(activityData[2]);
@@ -30,9 +30,7 @@ public class Main {
         String fileName = filePath.getFileName().toString();
         int lastDotIndex = fileName.lastIndexOf('.');
         String newFile = fileName.substring(0, lastDotIndex);
-
         String newFileName = newFile + "_20011969.txt";
-        filePath = Paths.get(inputFile);
         Path newFilePath = filePath.getParent().resolve(newFileName);
 
         try {
