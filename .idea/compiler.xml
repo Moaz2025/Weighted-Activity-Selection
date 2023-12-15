@@ -6,11 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Algorithms-Assignment-2" />
+        <module name="Weighted-Activity-Selection" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Algorithms-Assignment-2" target="17" />
+      <module name="Algorithms-Assignment-2" target="20" />
+      <module name="example_project" target="17" />
+      <module name="Weighted-Activity-Selection" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
